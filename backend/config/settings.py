@@ -48,7 +48,8 @@ INSTALLED_APPS = [
 
     'core',
     'users',
-    'estimator'
+    'course',
+    'estimator',
 ]
 
 MIDDLEWARE = [
