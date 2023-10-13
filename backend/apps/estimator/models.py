@@ -11,6 +11,9 @@ class Question(BaseModel):
     topic = models.ForeignKey(Topic, CASCADE)
     lesson = models.ForeignKey(Lesson, CASCADE)
 
+    def __str__(self):
+        return self.text
+
     class Meta:
         db_table = 'estimator_questions'
 
@@ -20,9 +23,18 @@ class Answer(BaseModel):
     is_correct = models.BooleanField()
     question = models.ForeignKey(Question, CASCADE)
 
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        db_table = 'estimator_answers'
+
 
 class Respondent(BaseModel):
     user = models.ForeignKey(User, CASCADE, null=True, blank=True)
+
+    class Meta:
+        db_table = 'estimator_respondents'
 
 
 class RespondentAnswer(BaseModel):
@@ -31,3 +43,10 @@ class RespondentAnswer(BaseModel):
     answer = models.ForeignKey(Answer, CASCADE)
     topic = models.ForeignKey(Topic, CASCADE)
     lesson = models.ForeignKey(Lesson, CASCADE)
+
+    def __str__(self):
+        return f"{self.question.text} - {self.answer.text}"
+
+    class Meta:
+        db_table = 'estimator_respondent_answers'
+
