@@ -1,3 +1,7 @@
 from django.urls import path
 
-urlpatterns = []
+from estimator.views.respondents import RespondentList
+
+urlpatterns = [
+    path('respondents', RespondentList.as_view()),
+]

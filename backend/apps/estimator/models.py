@@ -32,6 +32,7 @@ class Answer(BaseModel):
 
 class Respondent(BaseModel):
     user = models.ForeignKey(User, CASCADE, null=True, blank=True)
+    course = models.ForeignKey(Course, CASCADE)
 
     class Meta:
         db_table = 'estimator_respondents'
@@ -39,6 +40,7 @@ class Respondent(BaseModel):
 
 class RespondentAnswer(BaseModel):
     is_correct = models.BooleanField()
+    respondent = models.ForeignKey(Respondent, CASCADE, related_name='respondent_answers')
     question = models.ForeignKey(Question, CASCADE)
     answer = models.ForeignKey(Answer, CASCADE)
     topic = models.ForeignKey(Topic, CASCADE)
