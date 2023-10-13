@@ -1,0 +1,114 @@
+# USERS
+-
+    model: "users.User"
+    pk: 1
+    fields:
+        email: "angelina@gmail.com"
+        username: "angelina@gmail.com"
+        first_name: "Angelina"
+        last_name: "Jolie"
+        groups: [[admin]]
+        verified_at: "2018-01-01 00:00:00+00:00"
+        password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
+
+-
+    model: "users.User"
+    pk: 2
+    fields:
+        email: "samuel@gmail.com"
+        username: "samuel@gmail.com"
+        first_name: "Samuel"
+        last_name: "Jackson"
+#        groups: [[teacher]]
+        verified_at: "2018-01-01 00:00:00+00:00"
+        password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
+
+-
+    model: "users.User"
+    pk: 3
+    fields:
+        email: "monica@gmail.com"
+        username: "monica@gmail.com"
+        first_name: "Monica"
+        last_name: "Bellucci"
+#        groups: [[accountant]]
+        verified_at: "2018-01-01 00:00:00+00:00"
+        password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
+
+-
+    model: "users.User"
+    pk: 4
+    fields:
+        email: "scarlett@gmail.com"
+        username: "scarlett@gmail.com"
+        first_name: "Scarlett"
+        last_name: "Johansson"
+#        groups: [[accountant]]
+        verified_at: "2018-01-01 00:00:00+00:00"
+        password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
+
+
+# TOKENS
+-
+    model: "users.Token"
+    pk: 1
+    fields:
+        user_id: 1
+        key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IkFuZ2VsaW5hIiwibGFzdF9uYW1lIjoiSm9saWUiLCJleHAiOjY4NDc5NTExMDMuMTA1MjcxfQ._DEzsNGhdMDXgQdKbbmqTVRmH0fJ-eDpnpwzB_MFGRk"
+        refresh: "af602e8f234ecc9ba03eb8eef2e6eb9c"
+        expires_at: "4000-01-01 00:00:00+00:00"
+        created_at: "2018-01-01 00:00:00+00:00"
+        updated_at: "2018-01-01 00:00:00+00:00"
+
+-
+    model: "users.Token"
+    pk: 2
+    fields:
+        user_id: 2
+        key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RfbmFtZSI6IlNhbXVlbCIsImxhc3RfbmFtZSI6IkphY2tzb24iLCJleHAiOjY4NDc5NTExMzguNDk5OTQ1fQ.vm7Ay4S-BTW2nhOurc6FUT1ZHjfP1Dz-P2RvosyqsIo"
+        refresh: "b4f89a9ae6c9dc283cac57ed870910f3"
+        expires_at: "4000-01-01 00:00:00+00:00"
+        created_at: "2018-01-01 00:00:00+00:00"
+        updated_at: "2018-01-01 00:00:00+00:00"
+
+-
+    model: "users.Token"
+    pk: 3
+    fields:
+        user_id: 3
+        key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3RfbmFtZSI6Ik1vbmljYSIsImxhc3RfbmFtZSI6IkJlbGx1Y2NpIiwiZXhwIjo2ODQ3OTUxMTY2LjI3MDQzNX0.b_XJfcCn_Vq35XRJPn9nj1Tob_yCIisPSM0e3dDOHTc"
+        refresh: "120fbeebd5f8d4c460a232b904b9bec7"
+        expires_at: "4000-01-01 00:00:00+00:00"
+        created_at: "2018-01-01 00:00:00+00:00"
+        updated_at: "2018-01-01 00:00:00+00:00"
+
+-
+    model: "users.Token"
+    pk: 4
+    fields:
+        user_id: 4
+        key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IlNjYXJsZXR0IiwibGFzdF9uYW1lIjoiSm9oYW5zc29uIiwiZXhwIjo2ODQ3OTUxMjAyLjk3NTkxNH0.Yrgrl3GSB28XoeiIHF9yJf0izGRgReTwJf03eXMVCLI"
+        refresh: "5e84409f824bae3e5aa03a3efe4313c9"
+        expires_at: "4000-01-01 00:00:00+00:00"
+        created_at: "2018-01-01 00:00:00+00:00"
+        updated_at: "2018-01-01 00:00:00+00:00"
+
+
+# Group Permissions
+- model: auth.group
+  pk: 1
+  fields:
+    name: admin
+#    permissions:
+#    - - add_lesson
+#      - academy
+#      - lesson
+#    - - change_lesson
+#      - academy
+#      - lesson
+#    - - delete_lesson
+#      - academy
+#      - lesson
+#    - - view_lesson
+#      - academy
+#      - lesson

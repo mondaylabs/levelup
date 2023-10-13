@@ -1,0 +1,17 @@
+.idea
+.venv
+*.pyc
+/static
+media
+config/settings_dev.py
+config/settings_prod.py
+.DS_Store
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tags
+pytest.ini
+data
+uploads
+.env
+.envrc
+files

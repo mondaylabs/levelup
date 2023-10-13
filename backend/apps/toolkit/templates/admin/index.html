@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block breadcrumbs %}{% endblock %}
+{% block content_title %}{% endblock %}
+
+{% block content %}
+    {% for app in app_list %}
+        <h1>{{ app.name }}</h1>
+
+        <div class="app">
+            {% for model in app.models %}
+                <div class="model">
+                    <a href="{{ model.admin_url }}"><h1>{{ model.name }}</h1></a>
+
+                    <div class="links">
+                        {% if model.add_url %}
+                            <a href="{{ model.add_url }}">{% translate 'Add' %}</a> &nbsp; | &nbsp;
+                        {% endif %}
+
+                        {% if model.admin_url %}
+                            <a href="{{ model.admin_url }}">Посмотреть</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
