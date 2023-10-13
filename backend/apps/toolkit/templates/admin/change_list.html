@@ -4,7 +4,7 @@
 {% if not is_popup %}
     {% block breadcrumbs %}
         <div class="breadcrumbs">
-            <a href="{% url 'admin:index' %}">{% translate 'Transactions' %}</a>
+            <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
             &rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
         </div>
     {% endblock %}

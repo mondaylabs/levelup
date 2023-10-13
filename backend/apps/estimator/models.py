@@ -21,7 +21,7 @@ class Question(BaseModel):
 class Answer(BaseModel):
     text = models.CharField(max_length=255)
     is_correct = models.BooleanField()
-    question = models.ForeignKey(Question, CASCADE)
+    question = models.ForeignKey(Question, CASCADE, related_name='answers')
 
     def __str__(self):
         return self.text

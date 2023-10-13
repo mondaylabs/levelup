@@ -28,6 +28,8 @@ class Lesson(BaseModel):
 
 class Course(BaseModel):
     name = models.CharField(max_length=255)
+    image = models.CharField(max_length=255)
+    description = models.TextField()
     topics = models.ManyToManyField(Topic)
 
     def __str__(self):
