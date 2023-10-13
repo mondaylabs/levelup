@@ -2,21 +2,23 @@ from django.contrib import admin
 
 from course.models import Course, Topic, Lesson
 from toolkit.admin.base_admin import BaseAdmin
+from toolkit.admin.mixins import AuthorMixin
 
 
-@admin.register(Course)
-class CourseAdmin(BaseAdmin):
-    fields = ('name',)
-    list_display = ('name',)
+class LessonInline(admin.TabularInline):
+    extra = 1
+    model = Lesson
+    fields = ('name', 'description',)
 
 
 @admin.register(Topic)
-class TopicAdmin(BaseAdmin):
-    fields = ('name',)
+class TopicAdmin(AuthorMixin, BaseAdmin):
     list_display = ('name',)
+    fields = ('name',)
+    inlines = (LessonInline,)
 
 
-@admin.register(Lesson)
-class LessonAdmin(BaseAdmin):
-    fields = ('name',)
+@admin.register(Course)
+class CourseAdmin(AuthorMixin, BaseAdmin):
     list_display = ('name',)
+    fields = ('name', 'topics')

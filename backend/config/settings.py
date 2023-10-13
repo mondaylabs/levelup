@@ -157,7 +157,7 @@ LOGIN_REDIRECT_URL = '/api/v1/toolkit/'
 FRONTEND_DOMAIN = os.environ.get('FRONTEND_DOMAIN', 'http://localhost:3000')
 CORS_ORIGIN_WHITELIST = (FRONTEND_DOMAIN,)
 
-COMPANY_NAME = 'Monday toolkit'
+COMPANY_NAME = 'Level Up'
 DEFAULT_FIXTURES = [
     # when you run `manage.py fixtures` fixtures below will be loaded.
     'users_and_tokens',
