@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Button from "../components/common/Button.jsx";
 import {useNavigate, useParams} from "react-router-dom";
+import Sidebar from "../components/Sidebar.jsx";
+import Modal from "../components/Modal.jsx";
+import SignUpForm from "../components/SignUpForm.jsx";
 
 const tests = {
     count: 4,
@@ -123,10 +126,11 @@ function QuestionDetail({}) {
 
     return (
         <div className="flex">
-            <div className="w-[20%] bg-gray-50  h-[100vh] shadow-xl
-             flex gap-[24px] items-center p-[15px] py-[10px] flex-col rounded-se-[100px]">
+            <Sidebar>
                 <div className="flex items-center justify-center pt-[32px]">
-                    <div className="radial-progress text-success duration-500" style={{"--value": procente, "--size": "150px"}}>{procente}%</div>
+                    <div className="radial-progress text-success duration-500"
+                         style={{"--value": procente, "--size": "150px"}}>{procente}%
+                    </div>
                 </div>
                 <ul className="steps steps-vertical max-h-[70vh] overflow-auto w-[90%] text-center ">
                     {tests.results.length ? tests.results.map(question => (
@@ -143,7 +147,8 @@ function QuestionDetail({}) {
                     )) : ''}
 
                 </ul>
-            </div>
+            </Sidebar>
+
             <div className="flex flex-col p-[40px] gap-10 w-[100%] justify-between">
                 <div className="flex flex-col p-[40px] gap-10 w-[100%]">
                     <div className="flex flex-col gap-3 w-[100%]">
@@ -178,7 +183,8 @@ function QuestionDetail({}) {
                         /> : ''}
                         {thisIndex === tests.results.length - 1 ? (
                             <Button
-                                text={'End'}
+                                onClick={() => document.getElementById('my_modal_3').showModal()}
+                                text={'Registration'}
                                 className={'btn btn-success text-white w-[20%]'}
                             />
                         ) : (
@@ -188,24 +194,24 @@ function QuestionDetail({}) {
                                 className={'btn btn-success text-white w-[20%]'}
                             />
                         )}
-
+                      <SignUpForm/>
                     </div>
                 </div>
-                <div className="card w-[100%] bg-orange-50 shadow-xl">
-                    <div className="card-body">
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-square hover:bg-red-300 btn-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                          d="M6 18L18 6M6 6l12 12"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <p>We are using cookies for no reason.</p>
-                    </div>
-                </div>
+                {/*<div className="card w-[100%] bg-orange-50 shadow-xl">*/}
+                {/*    <div className="card-body">*/}
+                {/*        <div className="card-actions justify-end">*/}
+                {/*            <button className="btn btn-square hover:bg-red-300 btn-sm">*/}
+                {/*                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"*/}
+                {/*                     viewBox="0 0 24 24"*/}
+                {/*                     stroke="currentColor">*/}
+                {/*                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"*/}
+                {/*                          d="M6 18L18 6M6 6l12 12"/>*/}
+                {/*                </svg>*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
+                {/*        <p>We are using cookies for no reason.</p>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </div>
 

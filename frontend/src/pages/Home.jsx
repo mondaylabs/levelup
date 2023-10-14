@@ -11,7 +11,7 @@ function Home() {
                     <h1 className='font-bold text-[38px] mx-auto text-center w-[535px] mb-[48px]'>Преподаватели, с
                         которыми тебе будет интересно</h1>
                     <div className="flex gap-[12px] flex-wrap">
-                        <button className="btn bg-[#44ad4e] text-white">Button</button>
+                        <button className="btn btn-success text-white">Button</button>
                         <button className="btn">Button</button>
                         <button className="btn">Button</button>
                         <button className="btn">Button</button>
