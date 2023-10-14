@@ -1,3 +1,7 @@
+from django.db.models import Count, Q
+from rest_framework import serializers
+
+from course.models import Lesson, Topic
 from estimator.models import Respondent, RespondentAnswer
 from toolkit.utils.serializers import BaseModelSerializer
 
@@ -34,3 +38,21 @@ class RespondentSerializer(BaseModelSerializer):
         model = Respondent
         fields = ('id', 'user', 'course', 'respondent_answers')
         extra_kwargs = {'answers': {'write_only': True}}
+
+
+class RespondentDetailSerializer(BaseModelSerializer):
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        topics = RespondentAnswer.objects\
+            .values('topic__name')\
+            .filter(respondent=instance)\
+            .annotate(score=Count('id', filter=Q(is_correct=True)) / Count('id'))
+
+        print(topics)
+
+        data['hard_skills'] = {topic['topic__name']: topic['score'] for topic in topics}
+        return data
+
+    class Meta:
+        model = Respondent
+        fields = ('id', 'user')

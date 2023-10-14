@@ -43,7 +43,7 @@ class RespondentAnswer(BaseModel):
     respondent = models.ForeignKey(Respondent, CASCADE, related_name='respondent_answers')
     question = models.ForeignKey(Question, CASCADE)
     answer = models.ForeignKey(Answer, CASCADE)
-    topic = models.ForeignKey(Topic, CASCADE)
+    topic = models.ForeignKey(Topic, CASCADE, related_name='respondent_answers')
     lesson = models.ForeignKey(Lesson, CASCADE)
 
     def __str__(self):

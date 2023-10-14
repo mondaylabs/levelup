@@ -5,6 +5,7 @@ from toolkit.views import ListMixin, BaseView
 
 class QuestionsList(ListMixin, BaseView):
     ordering = 'id'
-    filterset_fields = ('topic__course',)
+    check_retrieve_permission = False
+    filterset_fields = ('topic__courses',)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer

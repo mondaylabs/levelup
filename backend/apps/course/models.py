@@ -5,7 +5,12 @@ from toolkit.models import BaseModel
 
 
 class Topic(BaseModel):
+    TYPES = (
+        ('hard', 'Hard skill'),
+        ('soft', 'Soft skill'),
+    )
     name = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, choices=TYPES, default='hard')
 
     def __str__(self):
         return self.name
@@ -30,7 +35,7 @@ class Course(BaseModel):
     name = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     description = models.TextField()
-    topics = models.ManyToManyField(Topic)
+    topics = models.ManyToManyField(Topic, related_name='courses')
 
     def __str__(self):
         return self.name
