@@ -1,10 +1,38 @@
 import React from 'react';
 import Navbar from "../components/Navbar.jsx";
+import CardCurse from "../components/CardCurse";
 
 function Home() {
     return (
         <div>
-          <Navbar/>
+            <Navbar/>
+            <div className="container mx-auto flex-col">
+                <div className="mt-[24px] mb-[48px]">
+                    <h1 className='font-bold text-[38px] mx-auto text-center w-[535px] mb-[48px]'>Преподаватели, с
+                        которыми тебе будет интересно</h1>
+                    <div className="flex gap-[12px] flex-wrap">
+                        <button className="btn bg-[#44ad4e] text-white">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                        <button className="btn">Button</button>
+                    </div>
+                </div>
+                <div className='mx-auto my-[24px] w-[90%] h-[2px] bg-[#44ad4e]'>
+
+                </div>
+                <CardCurse/>
+            </div>
         </div>
 
     );
