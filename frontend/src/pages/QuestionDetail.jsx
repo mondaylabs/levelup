@@ -86,11 +86,39 @@ function QuestionDetail({}) {
     const letters = ['A', 'B', 'C', 'D']
     const [thisQuestion, setThisQuestion] = useState(null)
     const [passed, setPassed] = useState([])
+
     const params = useParams()
+    const thisIndex = tests.results.indexOf(thisQuestion)
+    const procente = Math.ceil((passed.length * 100) / tests.results.length)
 
     useEffect(() => {
         setThisQuestion(tests.results.find(i => i.id === +params.id))
+
     }, [params])
+
+    const next = () => {
+        let id = tests.results.find((item, index) => index === thisIndex + 1).id
+        navigate(`/question/${id}`)
+    }
+
+    const prev = () => {
+        let id = tests.results.find((item, index) => index === thisIndex - 1).id
+        navigate(`/question/${id}`)
+    }
+
+    const handleChange = (question, answer) => {
+        const changed = passed.find(item => item.question === thisQuestion.id)
+        if (!changed) {
+            setPassed([...passed, {question, answer}])
+        } else {
+            setPassed(passed.map(item => {
+                if (item.question === thisQuestion.id) {
+                    item.answer = answer
+                }
+                return item
+            }))
+        }
+    }
 
 
     return (
@@ -98,13 +126,16 @@ function QuestionDetail({}) {
             <div className="w-[20%] bg-gray-50  h-[100vh] shadow-xl
              flex gap-[24px] items-center p-[15px] py-[10px] flex-col rounded-se-[100px]">
                 <div className="flex items-center justify-center pt-[32px]">
-                    <div className="radial-progress text-success" style={{"--value": 100, "--size": "150px"}}>100%</div>
+                    <div className="radial-progress text-success duration-500" style={{"--value": procente, "--size": "150px"}}>{procente}%</div>
                 </div>
                 <ul className="steps steps-vertical max-h-[70vh] overflow-auto w-[90%] text-center ">
                     {tests.results.length ? tests.results.map(question => (
                         <li
                             onClick={() => navigate(`/question/${question.id}`)}
-                            className={`${params.id == question.id ? 'bg-gray-100' : ''} step step-success  cursor-pointer rounded-xl  hover:bg-gray-100 `}
+                            className={`${params.id == question.id ? 'bg-gray-100' : ''} 
+                            step ${passed.find(item => item.question === question.id) ? 'step-success' : ''}  
+                            cursor-pointer rounded-xl  
+                            hover:bg-gray-100 `}
                             key={question.id}>
                             Question {question.id}
                         </li>
@@ -122,7 +153,13 @@ function QuestionDetail({}) {
                                 <div className="flex flex-col gap-3 ">
                                     {thisQuestion.answers.map((answer, index) => (
                                         <label className="flex items-center gap-3" key={answer.id}>
-                                            <input type="radio" className="radio radio-success" name="answer"/>
+                                            <input
+                                                type="radio"
+                                                className="radio radio-success"
+                                                name="answer"
+                                                onChange={() => handleChange(thisQuestion.id, answer.id)}
+                                                checked={passed.find(item => item.answer === answer.id)}
+                                            />
                                             <span className="text-xl">{letters[index]}: {answer.text}</span>
                                         </label>
 
@@ -134,14 +171,24 @@ function QuestionDetail({}) {
 
                     </div>
                     <div className="flex items-center gap-3 justify-center w-[100%]">
-                        <Button
+                        {thisIndex ? <Button
+                            onClick={() => prev()}
                             text={'Prev'}
                             className={'btn-success text-white w-[20%]'}
-                        />
-                        <Button
-                            text={'Next'}
-                            className={'btn btn-success text-white w-[20%]'}
-                        />
+                        /> : ''}
+                        {thisIndex === tests.results.length - 1 ? (
+                            <Button
+                                text={'End'}
+                                className={'btn btn-success text-white w-[20%]'}
+                            />
+                        ) : (
+                            <Button
+                                onClick={() => next()}
+                                text={'Next'}
+                                className={'btn btn-success text-white w-[20%]'}
+                            />
+                        )}
+
                     </div>
                 </div>
                 <div className="card w-[100%] bg-orange-50 shadow-xl">
@@ -151,7 +198,7 @@ function QuestionDetail({}) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                                      viewBox="0 0 24 24"
                                      stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                           d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
                             </button>
