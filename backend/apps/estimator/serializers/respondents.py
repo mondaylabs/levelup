@@ -3,6 +3,7 @@ from django.db.models.functions import Cast
 from rest_framework import serializers
 
 from course.models import Lesson, Topic
+from course.serializers.lessons import LessonSerializer
 from estimator.models import Respondent, RespondentAnswer
 from toolkit.utils.serializers import BaseModelSerializer
 
@@ -44,16 +45,20 @@ class RespondentSerializer(BaseModelSerializer):
 class RespondentDetailSerializer(BaseModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        topics = RespondentAnswer.objects\
-            .values('topic__name')\
-            .filter(respondent=instance)\
-            .annotate(score=Cast(Count('id', filter=Q(is_correct=True)), FloatField()) / Cast(Count('id'), FloatField()))
+        topics = RespondentAnswer.objects.values('topic__name').filter(respondent=instance).annotate(
+            score=Cast(Count('id', filter=Q(is_correct=True)), FloatField()) / Cast(Count('id'), FloatField())
+        )
 
         hard_skills = topics.filter(topic__type='hard')
         soft_skills = topics.filter(topic__type='soft')
 
         data['hard_skills'] = {topic['topic__name']: topic['score'] * 100 for topic in hard_skills}
         data['soft_skills'] = {topic['topic__name']: topic['score'] * 100 for topic in soft_skills}
+
+        incorrect_answers = RespondentAnswer.objects.filter(respondent=instance, is_correct=False)
+        to_learn = Lesson.objects.filter(id__in=incorrect_answers.values('lesson_id'))
+        data['lessons'] = LessonSerializer(to_learn, many=True).data
+
         return data
 
     class Meta:
