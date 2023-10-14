@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar.jsx";
 import CardCurse from "../components/CardCurse";
+import {getCourses} from "../utils/promises.js";
 
 function Home() {
+    const [courses, setCourses] = useState([])
+
+    useEffect(() => {
+        getCourses()
+    }, [])
     return (
         <div>
             <Navbar/>
