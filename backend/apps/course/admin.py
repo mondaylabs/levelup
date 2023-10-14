@@ -21,4 +21,4 @@ class TopicAdmin(AuthorMixin, BaseAdmin):
 @admin.register(Course)
 class CourseAdmin(AuthorMixin, BaseAdmin):
     list_display = ('name',)
-    fields = ('name', 'topics')
+    fields = ('name', 'topics', 'image', 'description')
