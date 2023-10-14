@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Modal from "./Modal.jsx";
-import {register} from "../utils/auth.js";
+import { register} from "../utils/auth.js";
 
 function SignUpForm() {
     const [name, setName] = useState('')
@@ -12,7 +12,10 @@ function SignUpForm() {
     const signUp = e => {
         e.preventDefault()
         register(email, password, name, lastName)
-            .then(res => console.log(res.data.data))
+            .then(res => {
+                console.log(res.data)
+                localStorage.setItem('user', JSON.stringify(res.data))
+            })
             .catch(err => console.error(err))
     }
 

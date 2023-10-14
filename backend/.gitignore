@@ -15,3 +15,5 @@ uploads
 .env
 .envrc
 files
+
+backend/venv
