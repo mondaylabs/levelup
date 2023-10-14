@@ -2,6 +2,8 @@ import React from 'react';
 import Sidebar from "../components/Sidebar.jsx";
 import {Chart as ChartJS, Filler, Legend, LineElement, PointElement, RadialLinearScale, Tooltip,} from 'chart.js';
 import {Radar} from 'react-chartjs-2';
+import {FaBeer} from "react-icons/fa";
+import {RxDashboard} from "react-icons/rx";
 
 
 ChartJS.register(
@@ -28,29 +30,40 @@ export const data = {
 function Dashboard() {
     return (
         <div className="flex">
-            <Sidebar>
-                <div className="py-10">
-                    <h1 className="text-3xl font-bold ">Level Up</h1>
+            <Sidebar bg={`bg-[#44ad4e] text-white`}>
+                <h1 className='font-bold text-[48px] mt-[32px]'>Leveup</h1>
+                <div className="flex flex-col gap-[12px]">
+                    <button
+                        className='flex items-center px-[12px] py-[4px] rounded-[8px] gap-[8px] text-[20px] hover:bg-[#3d3d3d] transition duration-150 ease-out hover:ease-in'>
+                        <RxDashboard className='text-[24px]'/>
+                        Dashboard
+                    </button>
+                    <button
+                        className='flex items-center px-[12px] py-[4px] rounded-[8px] gap-[8px] text-[20px] hover:bg-[#3d3d3d] transition duration-150 ease-out hover:ease-in'>
+                        <RxDashboard className='text-[24px]'/>
+                        Settings
+                    </button>
+                    <button
+                        className='flex items-center px-[12px] py-[4px] rounded-[8px] gap-[8px] text-[20px] hover:bg-[#3d3d3d] transition duration-150 ease-out hover:ease-in'>
+                        <RxDashboard className='text-[24px]'/>
+                        Log out
+                    </button>
                 </div>
-                <ul className="menu w-100 rounded-box text-xl">
-                    <li><a>DashBoard</a></li>
-                    <li><a>Item 2</a></li>
-                    <li><a>Item 3</a></li>
-                </ul>
             </Sidebar>
-            <div className="w-[80%] ">
-                <div className="navbar bg-base-100 flex-row-reverse">
-                    <div className="flex-none gap-2 ">
-                        <div className="form-control">
-                            <input type="text" placeholder="Search" className="input
+            <div className="w-[80%] ml-[20%] p-[24px] ">
+                <div className="flex justify-between ">
+                    <h1 className='text-[32px] font-bold text-[#44AD4E]'>Dashboard</h1>
+                    <div className="form-control w-[30%]">
+                        <input type="text" placeholder="Search" className="input
                             rounded-3xl input-bordered w-24 md:w-auto focus:outline-0"/>
-                        </div>
+                    </div>
+                    <div className="flex items-center gap-[12px]">
+                        <h1 className='text-[20px] font-bold text-[#44ad4e]'>Shakhboz</h1>
                         <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src="https://avatars.githubusercontent.com/u/99078318?v=4"/>
-                                </div>
-                            </label>
+                            <div tabIndex={0} className="btn btn-ghost btn-circle w-[50px]">
+                                <img className='rounded-[100%]'
+                                     src="https://avatars.githubusercontent.com/u/99078318?v=4"/>
+                            </div>
                             <ul tabIndex={0}
                                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
@@ -64,99 +77,119 @@ function Dashboard() {
                             </ul>
                         </div>
                     </div>
+
                 </div>
-                <div className="p-10 flex flex-col gap-10">
+
+                <div className="flex flex-col gap-[24px]">
                     <div className="flex justify-between   gap-3 items-start ">
-                        <div className="card w-1/4 bg-base-100 shadow-xl">
-                            <div className="px-5 pt-5">
-                                <h1 className="card-title">Diogram 1</h1>
-                            </div>
+                        <div className="card w-[33%] bg-base-100 shadow-xl p-[24px]">
+                            <h1>Heloo</h1>
                             <figure>
-                                <Radar data={data}/>;
+                                <Radar data={data}/>
                             </figure>
-                            <div className="px-5 py-5">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-
-                            </div>
                         </div>
-                        <div className="card w-1/4 bg-base-100 shadow-xl">
-                            <div className="px-5 pt-5">
-                                <h1 className="card-title">Diogram 1</h1>
-                            </div>
+                        <div className="card w-[33%] bg-base-100 shadow-xl p-[24px]">
+                            <h1>Heloo</h1>
                             <figure>
-                                <Radar data={data}/>;
+                                <Radar data={data}/>
                             </figure>
-                            <div className="px-5 py-5">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-
-                            </div>
                         </div>
-                        <div className="card w-1/4 bg-base-100 shadow-xl">
-                            <div className="px-5 pt-5">
-                                <h1 className="card-title">Diogram 1</h1>
-                            </div>
+                        <div className="card w-[33%] bg-base-100 shadow-xl p-[24px]">
+                            <h1>Heloo</h1>
                             <figure>
-                                <Radar data={data}/>;
+                                <Radar data={data}/>
                             </figure>
-                            <div className="px-5 py-5">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-
-                            </div>
                         </div>
-                        <div className="card w-1/4 bg-base-100 shadow-xl">
-                            <div className="px-5 pt-5">
-                                <h1 className="card-title">Diogram 1</h1>
-                            </div>
-                            <figure>
-                                <Radar data={data}/>;
-                            </figure>
-                            <div className="px-5 py-5">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-
-                            </div>
-                        </div>
-
-
                     </div>
-                    <div className="flex justify-between">
-                        <div className="w-1/2">
-                            <div className="card bg-base-100 shadow-xl">
-                                <div className="px-5 pt-5">
-                                    <h1 className="card-title">Diogram 1</h1>
-                                </div>
-                                <figure>
-                                    <Radar data={data}/>
-                                </figure>
-                                <div className="px-5 py-5">
-                                    <h2 className="card-title">Shoes!</h2>
-                                    <p>If a dog chews shoes whose shoes does he choose?</p>
-
+                    <h1 className='text-[32px] font-bold text-[#44AD4E]'>My Curse</h1>
+                    <div className="flex justify-start gap-[14px] flex-wrap">
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
                                 </div>
                             </div>
                         </div>
-                          <div className="w-1/2">
-                            <div className="card bg-base-100 shadow-xl">
-                                <div className="px-5 pt-5">
-                                    <h1 className="card-title">Diogram 1</h1>
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
                                 </div>
-                                <figure>
-                                    <Radar data={data}/>
-                                </figure>
-                                <div className="px-5 py-5">
-                                    <h2 className="card-title">Shoes!</h2>
-                                    <p>If a dog chews shoes whose shoes does he choose?</p>
-
+                            </div>
+                        </div>
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card w-[24%]  bg-base-100 shadow-xl image-full">
+                            <figure><img className='p-[12px]'
+                                         src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
+                                         alt="Shoes"/></figure>
+                            <div className="card-body">
+                                <h2 className="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div className="card-actions justify-end">
+                                    <button className="btn btn-primary">Buy Now</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

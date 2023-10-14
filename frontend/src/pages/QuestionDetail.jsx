@@ -126,7 +126,7 @@ function QuestionDetail({}) {
 
     return (
         <div className="flex">
-            <Sidebar>
+            <Sidebar bg={`bg-gray-50`}>
                 <div className="flex items-center justify-center pt-[32px]">
                     <div className="radial-progress text-success duration-500"
                          style={{"--value": procente, "--size": "150px"}}>{procente}%
@@ -149,7 +149,7 @@ function QuestionDetail({}) {
                 </ul>
             </Sidebar>
 
-            <div className="flex flex-col p-[40px] gap-10 w-[100%] justify-between">
+            <div className="flex ml-[20%] flex-col p-[40px] gap-10 w-[100%] justify-between">
                 <div className="flex flex-col p-[40px] gap-10 w-[100%]">
                     <div className="flex flex-col gap-3 w-[100%]">
                         {thisQuestion ? <>
