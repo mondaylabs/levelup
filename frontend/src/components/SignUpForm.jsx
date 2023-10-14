@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import Modal from "./Modal.jsx";
 import {register} from "../utils/auth.js";
 
-function SignUpForm(props) {
+function SignUpForm() {
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
-    const [cPassword, setCPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [cPassword, setCPassword] = useState('')
 
     const signUp = e => {
         e.preventDefault()
-        register(email,password,name,lastName)
+        register(email, password, name, lastName)
             .then(res => console.log(res.data.data))
             .catch(err => console.error(err))
     }
@@ -71,7 +71,8 @@ function SignUpForm(props) {
                 <div>
                     <button
                         className="btn btn-block btn-success text-white"
-                    >Sign Up</button>
+                    >Sign Up
+                    </button>
                 </div>
                 <h1 className="text-center">Already have an account ?
                     <a href="#" className="text-blue-600 hover:text-blue-800 hover:underline">Login</a>

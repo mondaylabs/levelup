@@ -8,8 +8,8 @@ from users.views.sign_up import SignUpView, ConfirmView, ResendConfirmationEmail
 from users.views.users import UsersListView, UserSettingsView, ChangePasswordView
 
 urlpatterns = [
-    path('sign-in', SignInView.as_view(), name='signin'),
-    path('sign-up', SignUpView.as_view(), name='signup'),
+    path('sign-in/', SignInView.as_view(), name='signin'),
+    path('sign-up/', SignUpView.as_view(), name='signup'),
     path('refresh', RefreshView.as_view(), name='refresh'),
     path('sign-out', SignOutView.as_view(), name='signout'),
     path('confirm', ConfirmView.as_view(), name='confirm'),
