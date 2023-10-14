@@ -13,8 +13,8 @@ class LessonInline(admin.TabularInline):
 
 @admin.register(Topic)
 class TopicAdmin(AuthorMixin, BaseAdmin):
-    list_display = ('name',)
-    fields = ('name',)
+    list_display = ('name', 'type')
+    fields = ('name', 'type')
     inlines = (LessonInline,)
 
 

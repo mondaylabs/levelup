@@ -1,4 +1,5 @@
-from django.db.models import Count, Q
+from django.db.models import Count, Q, FloatField
+from django.db.models.functions import Cast
 from rest_framework import serializers
 
 from course.models import Lesson, Topic
@@ -46,11 +47,13 @@ class RespondentDetailSerializer(BaseModelSerializer):
         topics = RespondentAnswer.objects\
             .values('topic__name')\
             .filter(respondent=instance)\
-            .annotate(score=Count('id', filter=Q(is_correct=True)) / Count('id'))
+            .annotate(score=Cast(Count('id', filter=Q(is_correct=True)), FloatField()) / Cast(Count('id'), FloatField()))
 
-        print(topics)
+        hard_skills = topics.filter(topic__type='hard')
+        soft_skills = topics.filter(topic__type='soft')
 
-        data['hard_skills'] = {topic['topic__name']: topic['score'] for topic in topics}
+        data['hard_skills'] = {topic['topic__name']: topic['score'] * 100 for topic in hard_skills}
+        data['soft_skills'] = {topic['topic__name']: topic['score'] * 100 for topic in soft_skills}
         return data
 
     class Meta:
