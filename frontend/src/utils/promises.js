@@ -1,8 +1,8 @@
 import axios from "axios";
 import {COURSES} from "./urls.js";
 
-export const getCourses = () => {
-    axios.get(COURSES)
-        .then(res => console.log(res.data))
+export const loadData = (url, setState) => {
+    axios.get(url)
+        .then(res => setState(res.data))
         .catch(err => console.error(err))
 }

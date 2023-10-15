@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar.jsx";
 import CardCurse from "../components/CardCurse";
-import {getCourses} from "../utils/promises.js";
+import {loadData} from "../utils/promises.js";
+import {COURSES} from "../utils/urls.js";
 
 function Home() {
-    const [courses, setCourses] = useState([])
+    const [courses, setCourses] = useState(null)
+    const [showCourse, setShowCourse] = useState(0)
 
     useEffect(() => {
-        getCourses()
+        loadData(COURSES, setCourses)
     }, [])
+
+    console.log(courses)
     return (
         <div>
             <Navbar/>
@@ -17,27 +21,23 @@ function Home() {
                     <h1 className='font-bold text-[38px] mx-auto text-center w-[535px] mb-[48px]'>Преподаватели, с
                         которыми тебе будет интересно</h1>
                     <div className="flex gap-[12px] flex-wrap">
-                        <button className="btn btn-success text-white">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
-                        <button className="btn">Button</button>
+                        {courses && courses.results.map((course, index) => (
+                            <button
+                                key={course.id}
+                                className={`btn ${index === showCourse ? ' btn-success text-white' : ''}`}
+                                onClick={() => setShowCourse(index)}
+                            >
+                                {course.name}
+                            </button>
+
+                        ))}
+
                     </div>
                 </div>
                 <div className='mx-auto my-[24px] w-[90%] h-[2px] bg-[#44ad4e]'>
 
                 </div>
-                <CardCurse/>
+                <CardCurse showCourse={showCourse} courses={courses}/>
             </div>
         </div>
 

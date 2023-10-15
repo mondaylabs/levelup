@@ -4,4 +4,4 @@ export const BASE_API = 'http://bakha-aka.uz/api/v1/'
 export const USERS = `${BASE_API_TEST}users`
 export const SIGN_IN = `${BASE_API_TEST}users/sign-in/`
 export const SIGN_UP = `${BASE_API_TEST}users/sign-up/`
-export const COURSES = `${BASE_API}courses`
+export const COURSES = `${BASE_API}course/courses`

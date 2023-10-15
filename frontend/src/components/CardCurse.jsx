@@ -1,12 +1,12 @@
 import React from 'react';
 
-const CardCurse = () => {
-    return (
+const CardCurse = ({showCourse, courses}) => {
+
+    if (courses) return (
         <div className="flex my-[48px] justify-around">
             <div className="w-[50%] flex gap-[20px] flex-col justify-between">
                 <div className="mt-[48px]">
-                    <h1 className='mb-[48px] font-bold text-[38px] leading-[112%] text-[#44ad4e] origin-top-left rotate-[-2deg]'>Айзиля
-                        Мусина</h1>
+                    <h1 className='mb-[48px] font-bold text-[38px] leading-[112%] text-[#44ad4e] origin-top-left rotate-[-2deg]'>{courses.results[showCourse].name}</h1>
                     <ul className='mt-[20px]'>
                         <li className='mt-[16px] text-[18px] leading-[135%] flex items-start gap-[21px] text-center before:content-[""] before:w-[8px] before:h-[8px] before:rounded-lg before:mt-[0.4em] before:bg-[#44ad4e]'>
                             Lorem ipsum dolor sit amet, consectetur adipisicing.
@@ -30,7 +30,8 @@ const CardCurse = () => {
                      alt=""/>
             </div>
         </div>
-    );
+    )
+    else return  'loading'
 };
 
 export default CardCurse;
