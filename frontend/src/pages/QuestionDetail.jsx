@@ -2,111 +2,40 @@ import React, {useEffect, useState} from 'react';
 import Button from "../components/common/Button.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import Sidebar from "../components/Sidebar.jsx";
-import Modal from "../components/Modal.jsx";
-import SignUpForm from "../components/SignUpForm.jsx";
-
-const tests = {
-    count: 4,
-    results: [
-        {
-            id: 1,
-            text: "First Question?",
-            answers: [
-                {
-                    id: 1,
-                    text: "Answer 1"
-                },
-                {
-                    id: 2,
-                    text: "Answer 2"
-                },
-                {
-                    id: 3,
-                    text: "Answer 3"
-                }
-            ]
-        },
-        {
-            id: 2,
-            text: "Python Question 1?",
-            answers: [
-                {
-                    id: 4,
-                    text: "Answer 2.1"
-                },
-                {
-                    id: 5,
-                    text: "Answer 2.2"
-                },
-                {
-                    id: 6,
-                    text: "Answer 2.3"
-                }
-            ]
-        },
-        {
-            id: 3,
-            text: "Python Question 2?",
-            answers: [
-                {
-                    id: 7,
-                    text: "Answer 3.1"
-                },
-                {
-                    id: 8,
-                    text: "Answer 3.2"
-                },
-                {
-                    id: 9,
-                    text: "Answer 3.3"
-                }
-            ],
-        }, {
-            id: 4,
-            text: "Python Question 3?",
-            answers: [
-                {
-                    id: 10,
-                    text: "Answer 4.1"
-                },
-                {
-                    id: 11,
-                    text: "Answer 4.2"
-                },
-                {
-                    id: 12,
-                    text: "Answer 4.3"
-                }
-            ],
-        },
-
-    ]
-}
+import {loadData} from "../utils/promises.js";
+import {QUESTIONS, RESPONDENTS} from "../utils/urls.js";
+import axios from "axios";
 
 
 function QuestionDetail({}) {
+    const [tests, setTests] = useState(null)
+
+
     const navigate = useNavigate()
     const letters = ['A', 'B', 'C', 'D']
     const [thisQuestion, setThisQuestion] = useState(null)
     const [passed, setPassed] = useState([])
 
     const params = useParams()
-    const thisIndex = tests.results.indexOf(thisQuestion)
-    const procente = Math.ceil((passed.length * 100) / tests.results.length)
+    const thisIndex = tests && tests.results.indexOf(thisQuestion)
+    const procente = tests && Math.ceil((passed.length * 100) / tests.results.length)
 
     useEffect(() => {
-        setThisQuestion(tests.results.find(i => i.id === +params.id))
+        if (tests) setThisQuestion(tests.results.find(i => i.id === +params.id))
 
-    }, [params])
+    }, [params, tests])
+    useEffect(() => {
+        loadData(QUESTIONS.replace(params.courseId), setTests)
+    }, [])
 
     const next = () => {
         let id = tests.results.find((item, index) => index === thisIndex + 1).id
-        navigate(`/question/${id}`)
+        navigate(`/question/${id}/${params.courseId}`)
     }
 
     const prev = () => {
         let id = tests.results.find((item, index) => index === thisIndex - 1).id
-        navigate(`/question/${id}`)
+        navigate(`/question/${id}/${params.courseId}`)
     }
 
     const handleChange = (question, answer) => {
@@ -123,8 +52,18 @@ function QuestionDetail({}) {
         }
     }
 
+    const passTest = () => {
+        axios.post(RESPONDENTS, {
+            course: params.courseId,
+            respondent_answers: passed
+        })
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err))
+        alert('N')
+    }
 
-    return (
+
+    if (tests) return (
         <div className="flex">
             <Sidebar bg={`bg-gray-50`}>
                 <div className="flex items-center justify-center pt-[32px]">
@@ -133,15 +72,15 @@ function QuestionDetail({}) {
                     </div>
                 </div>
                 <ul className="steps steps-vertical max-h-[70vh] overflow-auto w-[90%] text-center ">
-                    {tests.results.length ? tests.results.map(question => (
+                    {tests.results.length ? tests.results.map((question, index) => (
                         <li
-                            onClick={() => navigate(`/question/${question.id}`)}
+                            onClick={() => navigate(`/question/${question.id}/${params.courseId}`)}
                             className={`${params.id == question.id ? 'bg-gray-100' : ''} 
                             step ${passed.find(item => item.question === question.id) ? 'step-success' : ''}  
                             cursor-pointer rounded-xl  
                             hover:bg-gray-100 `}
                             key={question.id}>
-                            Question {question.id}
+                            Question {index + 1}
                         </li>
 
                     )) : ''}
@@ -183,8 +122,8 @@ function QuestionDetail({}) {
                         /> : ''}
                         {thisIndex === tests.results.length - 1 ? (
                             <Button
-                                onClick={() => document.getElementById('my_modal_3').showModal()}
-                                text={'Registration'}
+                                onClick={() => passTest()}
+                                text={'Show results'}
                                 className={'btn btn-success text-white w-[20%]'}
                             />
                         ) : (
@@ -194,7 +133,6 @@ function QuestionDetail({}) {
                                 className={'btn btn-success text-white w-[20%]'}
                             />
                         )}
-                      <SignUpForm/>
                     </div>
                 </div>
                 {/*<div className="card w-[100%] bg-orange-50 shadow-xl">*/}

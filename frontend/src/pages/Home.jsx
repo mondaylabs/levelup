@@ -2,16 +2,20 @@ import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar.jsx";
 import CardCurse from "../components/CardCurse";
 import {loadData} from "../utils/promises.js";
-import {COURSES} from "../utils/urls.js";
+import {COURSES, QUESTIONS} from "../utils/urls.js";
 
 function Home() {
     const [courses, setCourses] = useState(null)
     const [showCourse, setShowCourse] = useState(0)
+    const [questions, setQuestions]= useState([])
+
 
     useEffect(() => {
         loadData(COURSES, setCourses)
+        loadData(QUESTIONS.replace('id', '10'), setQuestions)
     }, [])
 
+    console.log(questions)
     console.log(courses)
     return (
         <div>
