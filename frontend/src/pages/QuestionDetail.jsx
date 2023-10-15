@@ -122,7 +122,8 @@ function QuestionDetail({}) {
                         /> : ''}
                         {thisIndex === tests.results.length - 1 ? (
                             <Button
-                                onClick={() => passTest()}
+                                onClick={()=> navigate("/dashboard")}
+                                // onClick={() => passTest()}
                                 text={'Show results'}
                                 className={'btn btn-success text-white w-[20%]'}
                             />

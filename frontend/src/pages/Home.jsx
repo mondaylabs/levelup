@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar.jsx";
 import CardCurse from "../components/CardCurse";
 import {loadData} from "../utils/promises.js";
 import {COURSES, QUESTIONS} from "../utils/urls.js";
+import SignUpForm from "../components/SignUpForm";
 
 function Home() {
     const [courses, setCourses] = useState(null)
@@ -39,7 +40,7 @@ function Home() {
                     </div>
                 </div>
                 <div className='mx-auto my-[24px] w-[90%] h-[2px] bg-[#44ad4e]'>
-
+                    <SignUpForm/>
                 </div>
                 <CardCurse showCourse={showCourse} courses={courses}/>
             </div>

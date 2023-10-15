@@ -36,8 +36,8 @@ const CardCurse = ({showCourse, courses}) => {
             </div>
             <div className="w-[40%]">
                 <img className='object-cover'
-                     src="https://camo.githubusercontent.com/0fd2667849df9f18b863a2fc9fdf275d28c0e69bae657009213dbbba08295d02/68747470733a2f2f7261772e6769746875622e636f6d2f436972636c6543492d5075626c69632f63696d672d707974686f6e2f6d61737465722f696d672f636972636c652d707974686f6e2e7376673f73616e6974697a653d74727565"
                      alt=""
+                     src={courses.results[showCourse].image}
 
                 />
             </div>
