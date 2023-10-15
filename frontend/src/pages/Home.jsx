@@ -22,7 +22,7 @@ function Home() {
             <Navbar/>
             <div className="container mx-auto flex-col">
                 <div className="mt-[24px] mb-[48px]">
-                    <h1 className='font-bold text-[38px] mx-auto text-center w-[535px] mb-[48px]'>Преподаватели, с
+                    <h1 className='font-bold text-[38px] mx-auto text-center w-[535px] mb-[48px]'>Курсе, с
                         которыми тебе будет интересно</h1>
                     <div className="flex gap-[12px] flex-wrap">
                         {courses && courses.results.map((course, index) => (
